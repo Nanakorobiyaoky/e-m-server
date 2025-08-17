@@ -1,4 +1,8 @@
 import type { Request, Response } from "express";
+
+import { Router } from "express";
+import { StatusCodes } from "http-status-codes";
+
 import type { ISignIn } from "../../_common/types/auth/i-sign-in.js";
 import type { ISignUp } from "../../_common/types/auth/i-sign-up.js";
 import type { IController } from "../../_common/types/i-controller.js";
@@ -7,8 +11,6 @@ import type { IBaseCrudService } from "../../../_common/types/i-base-crud-servic
 import type { IUser } from "../../../_common/types/i-user.js";
 import type { UsersModel } from "../../../primary-database/models/users.model";
 
-import { Router } from "express";
-import { StatusCodes } from "http-status-codes";
 import { SignInSchemas } from "../../_common/validation-schemas/auth/sign-in.schemas";
 import { SignUpSchemas } from "../../_common/validation-schemas/auth/sign-up.schemas";
 import { validateData } from "../../../_common/middlewares/validate-data.middleware";
