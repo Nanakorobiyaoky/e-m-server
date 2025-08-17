@@ -12,7 +12,7 @@
     "start": "node --env-file=.env dist/src/index.js",
     "dev": "tsx watch --env-file=.env src/index.ts",
     "build": "tsc",
-    "lint": "eslint --fix src"
+    "lint": "eslint --fix src --ignore-pattern 'src/primary-database/migrations/*'"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

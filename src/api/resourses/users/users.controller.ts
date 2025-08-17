@@ -37,7 +37,7 @@ class UsersController implements IController {
     private async getList(req: _Request, res: Response) {
         const query = req.query as { limit: string; offset: string };
 
-        const response = await this.userService.findAllAndPaginate({}, { limit: +query.limit, offset: +query.offset });
+        const response = await this.userService.findAllAndPaginate({ select: ["id", "fullName", "email", "dateOfBirth", "role", "isActive"] }, { limit: +query.limit, offset: +query.offset });
 
         res.status(StatusCodes.OK).json(response);
     }
@@ -55,6 +55,7 @@ class UsersController implements IController {
             where: {
                 id: +id,
             },
+            select: ["id", "fullName", "email", "dateOfBirth", "role", "isActive"],
         });
 
         if (!existingUser) {

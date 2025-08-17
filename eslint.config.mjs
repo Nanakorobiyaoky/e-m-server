@@ -26,5 +26,6 @@ export default antfu({
       ignore: ["README.md"],
     }],
     "test/prefer-lowercase-title": ["off"],
+    "max-len": ["warn", { code: 120, ignoreComments: true, ignoreStrings: true}]
   },
 });

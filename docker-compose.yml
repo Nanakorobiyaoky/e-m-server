@@ -1,0 +1,39 @@
+services:
+    server:
+        restart: "no"
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+            target: development
+        command: sh -c "/wait && npm run migration:run && npm run dev"
+        env_file:
+            - ./.env
+        depends_on:
+            - database
+        environment:
+            WAIT_HOSTS: "${PRIMARY_DATABASE_PORT_EXTERNAL}:${PRIMARY_DATABASE_PORT}"
+        ports:
+            - "${SERVER_PORT_EXTERNAL}:${SERVER_PORT}"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/dist
+            - ./node_modules:/usr/src/app/node_modules
+
+    database:
+        restart: "no"
+        image: mysql:8
+        env_file:
+            - ./.env
+        environment:
+            MYSQL_DATABASE: "${PRIMARY_DATABASE_NAME}"
+            MYSQL_USER: "${PRIMARY_DATABASE_USERNAME}"
+            MYSQL_PASSWORD: "${PRIMARY_DATABASE_PASSWORD}"
+            MYSQL_ROOT_PASSWORD: "${PRIMARY_DATABASE_PASSWORD}"
+            MYSQL_TCP_PORT: "${PRIMARY_DATABASE_PORT}"
+        ports:
+            - "${PRIMARY_DATABASE_PORT_EXTERNAL}:${PRIMARY_DATABASE_PORT}"
+        volumes:
+            - mysql-db:/var/lib/mysql
+
+volumes:
+    mysql-db:

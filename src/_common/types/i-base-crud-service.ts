@@ -8,5 +8,8 @@ export type IBaseCrudService<T> = {
     findAll: (searchOptions: FindManyOptions<T>) => Promise<Array<T>>;
     findOne: (searchOptions: FindOneOptions<T>) => Promise<T>;
     updateOne: (instanceToUpdate: T | number, data: DeepPartial<T>,) => Promise<boolean>;
-    findAllAndPaginate: (searchOptions: FindManyOptions<T>, options: IPaginate) => Promise<{ items: T[]; meta: IListMeta }>;
+    findAllAndPaginate: (searchOptions: FindManyOptions<T>, options: IPaginate) => Promise<{
+        items: T[];
+        meta: IListMeta;
+    }>;
 };
