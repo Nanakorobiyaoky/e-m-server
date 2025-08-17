@@ -11,7 +11,7 @@ services:
         depends_on:
             - database
         environment:
-            WAIT_HOSTS: "${PRIMARY_DATABASE_PORT_EXTERNAL}:${PRIMARY_DATABASE_PORT}"
+            WAIT_HOSTS: "${PRIMARY_DATABASE_HOST}:${PRIMARY_DATABASE_PORT}"
         ports:
             - "${SERVER_PORT_EXTERNAL}:${SERVER_PORT}"
         volumes:
