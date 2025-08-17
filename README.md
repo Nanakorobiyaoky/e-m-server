@@ -28,3 +28,13 @@ run docker app
 ```bash
 docker compose up
 ```
+
+
+Создание юзеров с ролью админ не предусмотрено. Админ создается при старте системы.
+
+Креды админа:
+
+
+| email             | password     |
+|-------------------|--------------|
+| admin@admin.com   | adminPassword|
